@@ -22,6 +22,7 @@ For Each xSheet In ThisWorkbook.Sheets
 
 'Necessarios incluir as exclusões abaixo também
 
+
 If xSheet.Name <> exclusao_1 And xSheet.Name <> exclusao_2 And xSheet.Name <> exclusao_3 Then
 ComboBox1.AddItem xSheet.Name
 End If
