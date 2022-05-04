@@ -1,0 +1,39 @@
+Option Explicit: Option Compare Text
+Private Sub ComboBox1_Change()
+'Updateby Extendoffice
+If ComboBox1.ListIndex > -1 Then Sheets(ComboBox1.Text).Select
+End Sub
+Private Sub ComboBox1_DropButtonClick()
+'Caso queira que alguma guia não apareça da relação da caixa de seleção, inserir o nome da guia abaixo, e seguir a ordem. 3 guias logo serão 3 exclusões
+Dim exclusao_1, exclusao_2, exclusao_3 As String
+exclusao_1 = "PLAN1"
+exclusao_2 = "PLAN2"
+exclusao_3 = "PLAN3"
+
+
+
+Dim xSheet As Worksheet
+On Error Resume Next
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+If ComboBox1.ListCount <> ThisWorkbook.Sheets.Count Then
+ComboBox1.Clear
+For Each xSheet In ThisWorkbook.Sheets
+
+'Necessarios incluir as exclusões abaixo também
+
+If xSheet.Name <> exclusao_1 And xSheet.Name <> exclusao_2 And xSheet.Name <> exclusao_3 Then
+ComboBox1.AddItem xSheet.Name
+End If
+Next xSheet
+End If
+Application.EnableEvents = True
+Application.ScreenUpdating = True
+End Sub
+Private Sub ComboBox1_GotFocus()
+If ComboBox1.ListCount <> 0 Then ComboBox1.DropDown
+End Sub
+
+Private Sub CommandButton1_Click()
+
+End Sub
